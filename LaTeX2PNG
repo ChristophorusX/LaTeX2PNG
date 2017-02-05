@@ -1,9 +1,40 @@
-#!/bin/zsh
+#!/bin/bash
 
 FILE="Template.pdf"
 TEXFILE="Template.tex"
+
+while [[ $# -gt 1 ]]; do
+    KEY="$1"
+
+    case $KEY in
+        -l|--line)
+            LINE="$2"
+            shift
+            ;;
+        -b|--border)
+            BORDER="$2"
+            shift
+            ;;
+        -g|--background)
+            BACKGROUND="$2"
+            shift
+            ;;
+        -d|--displaystyle)
+            DISPLAYSTYLE="$2"
+            shift
+            ;;
+        --default)
+            DEFAULT=YES
+            ;;
+        *)
+
+            ;;
+    esac
+    shift
+done
+
 if [[ -f $TEXFILE ]]; then
-    pdflatex $TEXFILE
+    pdflatex $TEXFILE -o $FILE
 else
     echo "The TeX file $TEXFILE does not exist."
 fi
