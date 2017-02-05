@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+FILE="Template.pdf"
+TEXFILE="Template.tex"
+if [[ -f $TEXFILE ]]; then
+    pdflatex $TEXFILE
+else
+    echo "The TeX file $TEXFILE does not exist."
+fi
+if [[ -f $FILE ]]; then
+    convert -density 800 Template.pdf -quality 800 -background white -alpha remove Output.png
+else
+    echo "The PDF file $FILE does not exist."
+fi
