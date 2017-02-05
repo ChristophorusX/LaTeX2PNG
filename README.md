@@ -18,7 +18,7 @@ Run
 
 `$ ./LaTeX2PNG`
 
-to compile `Template.tex` to PNG image. 
+to compile `Template.tex` to PNG image(`chmod +x` command may be needed to some). 
 
 Any inline formula can be produced using command line argument:
 
