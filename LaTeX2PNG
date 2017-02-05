@@ -54,7 +54,10 @@ if [[ -n $LINE ]]; then
     sed -ie '/[\\\]begin{document}/,/[\\\]end{document}/d' $TEXFILE.tex
     echo $"\\begin{document}$LINE\\end{document}" >> tmp.tex
 fi
-
+if [[ -n $BORDER ]]; then
+    sed -ie "s/border=10pt/border=$BORDER/g" $TEXFILE.tex
+    echo "Change border length to $BORDER."
+fi
 if [[ -f $TEXFILE.tex ]]; then
     if pdflatex $TEXFILE.tex && mv $TEXFILE.pdf $PDFFILE.pdf; then
         REMOVE=1
