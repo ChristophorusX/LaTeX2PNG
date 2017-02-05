@@ -1,7 +1,12 @@
 #!/bin/bash
 
-DEFAULTFILE="Template"
+PDFFILE="PDFOutput"
 TEXFILE="Template"
+PNGFILE="PNGOutput"
+
+if [[ $# -gt 1 ]]; then
+    CUSTOMIZE=1
+fi
 
 while [[ $# -gt 1 ]]; do
     KEY="$1"
@@ -41,8 +46,17 @@ while [[ $# -gt 1 ]]; do
     shift
 done
 
+if [[ $CUSTOMIZE = "1" ]]; then
+    cat $TEXFILE.tex > tmp.tex
+    TEXFILE=tmp
+fi
+if [[ -n $LINE ]]; then
+    sed -ie '/[\\\]begin{document}/,/[\\\]end{document}/d' $TEXFILE.tex
+    echo $"\\begin{document}$LINE\\end{document}" >> tmp.tex
+fi
+
 if [[ -f $TEXFILE.tex ]]; then
-    if pdflatex $TEXFILE.tex -o $DEFAULTFILE.pdf; then
+    if pdflatex $TEXFILE.tex && mv $TEXFILE.pdf $PDFFILE.pdf; then
         REMOVE=1
     else
         echo "Error occurs when compiling the TeX file into PDF file."
@@ -53,19 +67,25 @@ fi
 echo "PDF file generated."
 if [[ $REMOVE = "1" ]]; then
     if rm $TEXFILE.aux $TEXFILE.log; then
-        echo ".aux and .log files deleted."
+        echo ".aux and .log files removed."
     else
         echo "Cannot remove .aux and .log files."
     fi
+    if [[ -f $TEXFILE.texe ]]; then
+        rm $TEXFILE.texe
+        echo ".texe file removed."
+    fi
 fi
-if [[ -f $DEFAULTFILE.pdf ]]; then
+if [[ -f $PDFFILE.pdf ]]; then
     echo "Generating PNG image from PDF file."
-    if convert -density 800 Template.pdf -quality 800 -background white -alpha remove Output.png; then
+    if convert -density 800 $PDFFILE.pdf -quality 800 -background white -alpha remove $PNGFILE.png; then
         echo "PNG image successfully generated!"
     else
         echo "Failed to generate PNG image."
     fi
 else
-    echo "The PDF file $DEFAULTFILE.pdf does not exist."
+    echo "The PDF file $PDFFILE.pdf does not exist."
 fi
-
+#if [[ $CUSTOMIZE = "1" ]]; then
+#    rm tmp.tex
+#fi
