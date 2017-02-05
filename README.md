@@ -1,7 +1,6 @@
 # LaTeX2PNG
-This is a simple shell script working with TeXLive and ImageMagick to convert standalone TeX formula to PNG image
 ## General
-`Template.tex` is provided as a default file for TeX rendering, in which basic AMS packages and some shorthands are provided. One may choose to modify the part between `\begin{document}` and `\end{document}` for his or her own convenience, yet the modification of preamble is not recommended in general.
+This is a simple shell script working with TeXLive and ImageMagick to convert standalone TeX formula to PNG image. `Template.tex` is provided as a default file for TeX rendering, in which basic AMS packages and some shorthands are provided. One may choose to modify the part between `\begin{document}` and `\end{document}` for his or her own convenience, yet the modification of preamble is not recommended in general.
 ## Installation
 ### Prerequisites
 The following dependencies are required:
