@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DEFAULTFILE="Template.pdf"
-TEXFILE="Template.tex"
+DEFAULTFILE="Template"
+TEXFILE="Template"
 
 while [[ $# -gt 1 ]]; do
     KEY="$1"
@@ -41,13 +41,31 @@ while [[ $# -gt 1 ]]; do
     shift
 done
 
-if [[ -f $TEXFILE ]]; then
-    pdflatex $TEXFILE -o $DEFAULTFILE
+if [[ -f $TEXFILE.tex ]]; then
+    if pdflatex $TEXFILE.tex -o $DEFAULTFILE.pdf; then
+        REMOVE=1
+    else
+        echo "Error occurs when compiling the TeX file into PDF file."
+    fi
 else
-    echo "The TeX file $TEXFILE does not exist."
+    echo "The TeX file $TEXFILE.tex does not exist."
 fi
-if [[ -f $DEFAULTFILE ]]; then
-    convert -density 800 Template.pdf -quality 800 -background white -alpha remove Output.png
+echo "PDF file generated."
+if [[ $REMOVE = "1" ]]; then
+    if rm $TEXFILE.aux $TEXFILE.log; then
+        echo ".aux and .log files deleted."
+    else
+        echo "Cannot remove .aux and .log files."
+    fi
+fi
+if [[ -f $DEFAULTFILE.pdf ]]; then
+    echo "Generating PNG image from PDF file."
+    if convert -density 800 Template.pdf -quality 800 -background white -alpha remove Output.png; then
+        echo "PNG image successfully generated!"
+    else
+        echo "Failed to generate PNG image."
+    fi
 else
-    echo "The PDF file $DEFAULTFILE does not exist."
+    echo "The PDF file $DEFAULTFILE.pdf does not exist."
 fi
+
