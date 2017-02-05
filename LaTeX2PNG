@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE="Template.pdf"
+DEFAULTFILE="Template.pdf"
 TEXFILE="Template.tex"
 
 while [[ $# -gt 1 ]]; do
@@ -23,6 +23,14 @@ while [[ $# -gt 1 ]]; do
             DISPLAYSTYLE="$2"
             shift
             ;;
+        -i|--input)
+            INPUTPATH="$2"
+            shift
+            ;;
+        -o|--output)
+            OUTPUTPATH="$2"
+            shift
+            ;;
         --default)
             DEFAULT=YES
             ;;
@@ -34,12 +42,12 @@ while [[ $# -gt 1 ]]; do
 done
 
 if [[ -f $TEXFILE ]]; then
-    pdflatex $TEXFILE -o $FILE
+    pdflatex $TEXFILE -o $DEFAULTFILE
 else
     echo "The TeX file $TEXFILE does not exist."
 fi
-if [[ -f $FILE ]]; then
+if [[ -f $DEFAULTFILE ]]; then
     convert -density 800 Template.pdf -quality 800 -background white -alpha remove Output.png
 else
-    echo "The PDF file $FILE does not exist."
+    echo "The PDF file $DEFAULTFILE does not exist."
 fi
