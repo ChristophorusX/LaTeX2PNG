@@ -18,5 +18,15 @@ Run
 
 `$ ./LaTeX2PNG`
 
-to complie `Template.tex` to PNG image.
+to compile `Template.tex` to PNG image. Any inline formula can be produced using command line argument:
+
+`$ ./LaTeX2PNG -l "$\E(X+Y)=\E(X)+\E(Y)$"`
+
+Border length can be set by 
+
+`$ ./LaTeX2PNG -b 15pt`
+
+If transparent background is needed, just put
+
+`$ ./LaTeX2PNG -g none`
 
