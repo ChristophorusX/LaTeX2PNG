@@ -18,7 +18,9 @@ Run
 
 `$ ./LaTeX2PNG`
 
-to compile `Template.tex` to PNG image. Any inline formula can be produced using command line argument:
+to compile `Template.tex` to PNG image. 
+
+Any inline formula can be produced using command line argument:
 
 `$ ./LaTeX2PNG -l "$\E(X+Y)=\E(X)+\E(Y)$"`
 
