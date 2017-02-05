@@ -81,7 +81,13 @@ if [[ $REMOVE = "1" ]]; then
 fi
 if [[ -f $PDFFILE.pdf ]]; then
     echo "Generating PNG image from PDF file."
-    if convert -density 800 $PDFFILE.pdf -quality 800 -background white -alpha remove $PNGFILE.png; then
+    if [[ -n $BACKGROUND && $BACKGROUND = "none" ]]; then
+        if convert -density 800 $PDFFILE.pdf -quality 800 $PNGFILE.png; then
+            echo "PNG image without background successfully generated!"
+        else
+            echo "Failed to generate PNG image without background."
+        fi
+    elif convert -density 800 $PDFFILE.pdf -quality 800 -background white -alpha remove $PNGFILE.png; then
         echo "PNG image successfully generated!"
     else
         echo "Failed to generate PNG image."
