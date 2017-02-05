@@ -1,11 +1,15 @@
-\documentclass{standalone}
+\documentclass[preview,border=10pt]{standalone}
+\usepackage{varwidth}
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 
-\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Var}{\mathrm{Var}}
 
 \begin{document}
-Suppose we have such equation
-$\displaystyle
-\bbE(X+Y)=\bbE(X)+\bbE(Y)=\int_0^\infty
-$
+    Given two random variables being independent or not, we have the following equation $\E(X+Y)=\E(X)+\E(Y)=\int_0^\infty f(x)dx+\int_0^\infty g(y)dy$. For variation, we need to know the independency to have
+    \begin{displaymath}
+       \Var(X+Y)=\Var(X)+\Var(Y) 
+    \end{displaymath}
 \end{document}
