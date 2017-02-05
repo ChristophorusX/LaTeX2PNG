@@ -10,4 +10,4 @@ The following dependencies are required:
 
 ### Download from GitHub
 Run
-> $ git clone https://github.com/ChristophorusX/LaTeX2PNG.git
+    $ git clone https://github.com/ChristophorusX/LaTeX2PNG.git
