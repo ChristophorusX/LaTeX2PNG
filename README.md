@@ -5,7 +5,7 @@ This is a simple shell script working with TeXLive and ImageMagick to convert st
 ### Prerequisites
 The following dependencies are required:
 - TeXLive (Linux/Unix) or MacTeX (Mac)
-- ImageMagick (to install on Mac, please use Homebrew)
+- ImageMagick (to install it on Mac, please use Homebrew)
 
 ### Download from GitHub
 Run
