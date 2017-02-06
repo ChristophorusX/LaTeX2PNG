@@ -19,17 +19,23 @@ Run
 
 to compile `Template.tex` to PNG image (`chmod +x` command may be needed to some). 
 
-Any inline formula can be produced using command line argument:
+Any standalone formula can be produced using by giving option `-l/--line`:
 
 `$ ./LaTeX2PNG -l "$\E(X+Y)=\E(X)+\E(Y)$"`
 
-Border length can be set by 
+or
+
+`$ ./LaTeX2PNG -l "$$\E(X+Y)=\E(X)+\E(Y)$$"` to produce formula in display math.
+
+Also, border length of the documents can be set by `-b/--border` option:
 
 `$ ./LaTeX2PNG -b 15pt`
 
-If transparent background is needed, just put
+If transparent background is needed, just put `-g/--background` option:
 
 `$ ./LaTeX2PNG -g none`
+
+Other functionalities, such as optional input and output directory, are under development.:)
 
 ## Legal Issues
 This software is distributed under the MIT license.
