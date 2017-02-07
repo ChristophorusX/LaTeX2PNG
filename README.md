@@ -28,11 +28,13 @@ Any standalone formula can be produced by giving option `-l/--line`:
 or
 
 `$ ./LaTeX2PNG -l "$$\E(X+Y)=\E(X)+\E(Y)$$"` to produce formula in display math.
+
 -----
 
 Also, border length of the documents can be set by `-b/--border` option:
 
 `$ ./LaTeX2PNG -b 15pt`
+
 -----
 
 If transparent background is needed, just put `-g/--background` option:
