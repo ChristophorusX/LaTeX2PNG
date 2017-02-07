@@ -21,27 +21,27 @@ Run
 $ ./LaTeX2PNG
 ```
 
-to compile `Template.tex` to PNG image (`chmod +x` command may be needed to some).
+to compile `Template.tex` into PNG image (A performing of `chmod +x` may be needed before start using).
 
 -----
 
-Any standalone formula can be produced by giving option `-l/--line`:
+Any standalone formula can be produced by giving flag `-l/--line`:
 
 ```bash
 $ ./LaTeX2PNG -l "$\E(X+Y)=\E(X)+\E(Y)$"
-``` 
-to produce inline math.
+```
+to produce formulae in form of inline math.
 
 or
 
 ```bash
 $ ./LaTeX2PNG -l "$$\E(X+Y)=\E(X)+\E(Y)$$"
-``` 
-to produce formula in display math.
+```
+to produce formulae in form of in display math.
 
 -----
 
-Also, border length of the documents can be set by `-b/--border` option:
+Also, border length of the documents can be set by `-b/--border` flag:
 
 ```bash
 $ ./LaTeX2PNG -b 15pt
@@ -49,7 +49,7 @@ $ ./LaTeX2PNG -b 15pt
 
 -----
 
-If transparent background is needed, just put `-g/--background` option:
+If transparent background is required, just give `-g/--background` flag:
 
 ```bash
 $ ./LaTeX2PNG -g none
@@ -57,10 +57,10 @@ $ ./LaTeX2PNG -g none
 
 -----
 
-To specify input and output files, one can utilize options `-i/--input` for input and `-o/--output` for output:
+To specify input and output files, one can provide flags `-i/--input` for input and `-o/--output` for output:
 
 ```bash
-$ ./LaTeX2PNG -i ~/Desktop/latexfile.tex -o ~/Desktop/outputImage.png
+$ ./LaTeX2PNG -i ~/Desktop/latexFile.tex -o ~/Desktop/outputImage.png
 ```
 
 -----
