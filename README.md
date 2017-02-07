@@ -21,7 +21,7 @@ to compile `Template.tex` to PNG image (`chmod +x` command may be needed to some
 
 Any standalone formula can be produced by giving option `-l/--line`:
 
-`$ ./LaTeX2PNG -l "$\E(X+Y)=\E(X)+\E(Y)$"`
+`$ ./LaTeX2PNG -l "$\E(X+Y)=\E(X)+\E(Y)$"` to produce inline math.
 
 or
 
