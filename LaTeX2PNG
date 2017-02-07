@@ -5,7 +5,7 @@ TEXFILE="Template"
 PNGFILE="PNGOutput"
 
 if [[ $# -gt 1 ]]; then
-    CUSTOMIZE=1
+    CUSTOMIZE=YES
 fi
 
 while [[ $# -gt 1 ]]; do
@@ -46,7 +46,7 @@ while [[ $# -gt 1 ]]; do
     shift
 done
 
-if [[ $CUSTOMIZE = "1" ]]; then
+if [[ $CUSTOMIZE = YES ]]; then
     cat $TEXFILE.tex > tmp.tex
     TEXFILE=tmp
 fi
@@ -57,6 +57,9 @@ fi
 if [[ -n $BORDER ]]; then
     sed -ie "s/border=10pt/border=$BORDER/g" $TEXFILE.tex
     echo "Change border length to $BORDER."
+fi
+if [[ -n $INPUTPATH ]]; then
+    cat $INPUTPATH > $TEXFILE.tex
 fi
 if [[ -f $TEXFILE.tex ]]; then
     if pdflatex $TEXFILE.tex && mv $TEXFILE.pdf $PDFFILE.pdf; then
@@ -94,6 +97,9 @@ if [[ -f $PDFFILE.pdf ]]; then
     fi
 else
     echo "The PDF file $PDFFILE.pdf does not exist."
+fi
+if [[ -n $OUTPUTPATH ]]; then
+    mv $PNGFILE.png $OUTPUTPATH
 fi
 if [[ $CUSTOMIZE = "1" ]]; then
     rm $TEXFILE.tex
