@@ -29,13 +29,15 @@ Any standalone formula can be produced by giving option `-l/--line`:
 
 ```shell
 $ ./LaTeX2PNG -l "$\E(X+Y)=\E(X)+\E(Y)$"
-``` to produce inline math.
+``` 
+to produce inline math.
 
 or
 
 ```shell
 $ ./LaTeX2PNG -l "$$\E(X+Y)=\E(X)+\E(Y)$$"
-``` to produce formula in display math.
+``` 
+to produce formula in display math.
 
 -----
 
