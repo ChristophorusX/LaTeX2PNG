@@ -10,14 +10,14 @@ The following dependencies are required:
 ### Download from GitHub
 Run
 
-```shell
+```bash
 $ git clone https://github.com/ChristophorusX/LaTeX2PNG.git
 ```
 
 ## Get Started
 Run
 
-```shell
+```bash
 $ ./LaTeX2PNG
 ```
 
@@ -27,14 +27,14 @@ to compile `Template.tex` to PNG image (`chmod +x` command may be needed to some
 
 Any standalone formula can be produced by giving option `-l/--line`:
 
-```shell
+```bash
 $ ./LaTeX2PNG -l "$\E(X+Y)=\E(X)+\E(Y)$"
 ``` 
 to produce inline math.
 
 or
 
-```shell
+```bash
 $ ./LaTeX2PNG -l "$$\E(X+Y)=\E(X)+\E(Y)$$"
 ``` 
 to produce formula in display math.
@@ -43,7 +43,7 @@ to produce formula in display math.
 
 Also, border length of the documents can be set by `-b/--border` option:
 
-```shell
+```bash
 $ ./LaTeX2PNG -b 15pt
 ```
 
@@ -51,7 +51,7 @@ $ ./LaTeX2PNG -b 15pt
 
 If transparent background is needed, just put `-g/--background` option:
 
-```shell
+```bash
 $ ./LaTeX2PNG -g none
 ```
 
@@ -59,7 +59,7 @@ $ ./LaTeX2PNG -g none
 
 To specify input and output files, one can utilize options `-i/--input` for input and `-o/--output` for output:
 
-```shell
+```bash
 $ ./LaTeX2PNG -i ~/Desktop/latexfile.tex -o ~/Desktop/outputImage.png
 ```
 
