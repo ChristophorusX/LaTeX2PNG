@@ -35,7 +35,7 @@ If transparent background is needed, just put `-g/--background` option:
 
 `$ ./LaTeX2PNG -g none`
 
-To specify input and output files, one can utilize options `-i/-input` for input and `-o/-output` for output:
+To specify input and output files, one can utilize options `-i/--input` for input and `-o/--output` for output:
 
 `$ ./LaTeX2PNG -i ~/Desktop/latexfile.tex -o ~/Desktop/outputImage.png`
 
