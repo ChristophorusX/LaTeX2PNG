@@ -17,7 +17,7 @@ Run
 
 `$ ./LaTeX2PNG`
 
-to compile `Template.tex` to PNG image (`chmod +x` command may be needed to some). 
+to compile `Template.tex` to PNG image (`chmod +x` command may be needed to some).
 
 Any standalone formula can be produced by giving option `-l/--line`:
 
@@ -35,7 +35,10 @@ If transparent background is needed, just put `-g/--background` option:
 
 `$ ./LaTeX2PNG -g none`
 
-Other functionalities, such as optional input and output directory, are under development.:)
+To specify input and output files, one can utilize options `-i/-input` for input and `-o/-output` for output:
+
+`$ ./LaTeX2PNG -i ~/Desktop/latexfile.tex -o ~/Desktop/outputImage.png`
+Other functionalities, such as altering display style, are under development. :)
 
 ## Legal Issues
 This software is distributed under the MIT license.
