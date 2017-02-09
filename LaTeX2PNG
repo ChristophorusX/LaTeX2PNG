@@ -81,7 +81,7 @@ else
     exit $EXITCODE
 fi
 if [[ $REMOVE = YES ]]; then
-    if [[ -f $TEXFILE.aux and -f $TEXFILE.log ]]; then
+    if [[ ( -f $TEXFILE.aux ) && ( -f $TEXFILE.log ) ]]; then
         if rm $TEXFILE.aux $TEXFILE.log; then
             echo "[INFO].aux and .log files removed."
         else
@@ -101,7 +101,7 @@ if [[ $REMOVE = YES ]]; then
 fi
 if [[ -f $PDFFILE.pdf ]]; then
     echo "[INFO]Generating PNG image from PDF file."
-    if [[ -n $BACKGROUND && $BACKGROUND = "none" ]]; then
+    if [[ ( -n $BACKGROUND ) && ( $BACKGROUND = "none" ) ]]; then
         if convert -density 800 $PDFFILE.pdf -quality 800 $PNGFILE.png; then
             echo "[INFO]PNG image without background successfully generated!"
         else
