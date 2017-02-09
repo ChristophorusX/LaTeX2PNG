@@ -21,7 +21,7 @@ Run
 $ ./LaTeX2PNG
 ```
 
-to compile `Template.tex` into PNG image (A performing of `chmod +x` may be needed before start using).
+to compile `Template.tex` into PNG image (A performing of `chmod +x` may be needed before using).
 
 -----
 
