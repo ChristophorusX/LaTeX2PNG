@@ -56,7 +56,7 @@ if [[ -n $LINE ]]; then
 fi
 if [[ -n $BORDER ]]; then
     sed -ie "s/border=10pt/border=$BORDER/g" $TEXFILE.tex
-    echo "Change border length to $BORDER."
+    echo "[INFO]Change border length to $BORDER."
 fi
 if [[ -n $INPUTPATH ]]; then
     cat $INPUTPATH > $TEXFILE.tex
@@ -65,38 +65,38 @@ if [[ -f $TEXFILE.tex ]]; then
     if pdflatex $TEXFILE.tex && mv $TEXFILE.pdf $PDFFILE.pdf; then
         REMOVE=1
     else
-        echo "Error occurs when compiling the TeX file into PDF file."
+        echo "[WARNING]Error occurs when compiling the TeX file into PDF file."
     fi
 else
-    echo "The TeX file $TEXFILE.tex does not exist."
+    echo "[WARNING]The TeX file $TEXFILE.tex does not exist."
 fi
-echo "PDF file generated."
+echo "[INFO]PDF file generated."
 if [[ $REMOVE = "1" ]]; then
     if rm $TEXFILE.aux $TEXFILE.log; then
-        echo ".aux and .log files removed."
+        echo "[INFO].aux and .log files removed."
     else
-        echo "Cannot remove .aux and .log files."
+        echo "[WARNING]Cannot remove .aux and .log files."
     fi
     if [[ -f $TEXFILE.texe ]]; then
         rm $TEXFILE.texe
-        echo ".texe file removed."
+        echo "[INFO].texe file removed."
     fi
 fi
 if [[ -f $PDFFILE.pdf ]]; then
-    echo "Generating PNG image from PDF file."
+    echo "[INFO]Generating PNG image from PDF file."
     if [[ -n $BACKGROUND && $BACKGROUND = "none" ]]; then
         if convert -density 800 $PDFFILE.pdf -quality 800 $PNGFILE.png; then
-            echo "PNG image without background successfully generated!"
+            echo "[INFO]PNG image without background successfully generated!"
         else
-            echo "Failed to generate PNG image without background."
+            echo "[WARNING]Failed to generate PNG image without background."
         fi
     elif convert -density 800 $PDFFILE.pdf -quality 800 -background white -alpha remove $PNGFILE.png; then
-        echo "PNG image successfully generated!"
+        echo "[INFO]PNG image successfully generated!"
     else
-        echo "Failed to generate PNG image."
+        echo "[WARNING]Failed to generate PNG image."
     fi
 else
-    echo "The PDF file $PDFFILE.pdf does not exist."
+    echo "[WARNING]The PDF file $PDFFILE.pdf does not exist."
 fi
 if [[ -n $OUTPUTPATH ]]; then
     mv $PNGFILE.png $OUTPUTPATH
