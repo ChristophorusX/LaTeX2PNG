@@ -16,33 +16,33 @@ while [[ $# -gt 1 ]]; do
         -l|--line)
             LINE="$2"
             shift
-            ;;
+        ;;
         -b|--border)
             BORDER="$2"
             shift
-            ;;
+        ;;
         -g|--background)
             BACKGROUND="$2"
             shift
-            ;;
+        ;;
         -d|--displaystyle)
             DISPLAYSTYLE="$2"
             shift
-            ;;
+        ;;
         -i|--input)
             INPUTPATH="$2"
             shift
-            ;;
+        ;;
         -o|--output)
             OUTPUTPATH="$2"
             shift
-            ;;
+        ;;
         --default)
             DEFAULT=YES
-            ;;
+        ;;
         *)
 
-            ;;
+        ;;
     esac
     shift
 done
@@ -109,7 +109,7 @@ if [[ -f $PDFFILE.pdf ]]; then
             echo "[WARNING]Failed to generate PNG image without background."
             exit $EXITCODE
         fi
-    elif convert -density 800 $PDFFILE.pdf -quality 800 -background white -alpha remove $PNGFILE.png; then
+        elif convert -density 800 $PDFFILE.pdf -quality 800 -background white -alpha remove $PNGFILE.png; then
         echo "[INFO]PNG image successfully generated!"
     else
         EXITCODE=$?
