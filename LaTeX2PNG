@@ -3,6 +3,7 @@
 PDFFILE="PDFOutput"
 TEXFILE="Template"
 PNGFILE="PNGOutput"
+EXITCODE=0
 
 if [[ $# -gt 1 ]]; then
     CUSTOMIZE=YES
@@ -60,22 +61,38 @@ if [[ -n $BORDER ]]; then
 fi
 if [[ -n $INPUTPATH ]]; then
     cat $INPUTPATH > $TEXFILE.tex
+else
+    EXITCODE=$?
+    echo "[WARNING]The input file does not exist."
+    exit $EXITCODE
 fi
 if [[ -f $TEXFILE.tex ]]; then
     if pdflatex $TEXFILE.tex && mv $TEXFILE.pdf $PDFFILE.pdf; then
-        REMOVE=1
+        REMOVE=YES
+        echo "[INFO]PDF file generated."
     else
+        EXITCODE=$?
         echo "[WARNING]Error occurs when compiling the TeX file into PDF file."
+        exit $EXITCODE
     fi
 else
+    EXITCODE=$?
     echo "[WARNING]The TeX file $TEXFILE.tex does not exist."
+    exit $EXITCODE
 fi
-echo "[INFO]PDF file generated."
-if [[ $REMOVE = "1" ]]; then
-    if rm $TEXFILE.aux $TEXFILE.log; then
-        echo "[INFO].aux and .log files removed."
+if [[ $REMOVE = YES ]]; then
+    if [[ -f $TEXFILE.aux and -f $TEXFILE.log ]]; then
+        if rm $TEXFILE.aux $TEXFILE.log; then
+            echo "[INFO].aux and .log files removed."
+        else
+            EXITCODE=$?
+            echo "[WARNING]Cannot remove .aux and .log files."
+            exit $EXITCODE
+        fi
     else
-        echo "[WARNING]Cannot remove .aux and .log files."
+        EXITCODE=$?
+        echo "[WARNING].aux and .log files do not exist and therefore cannot be removed."
+        exit $EXITCODE
     fi
     if [[ -f $TEXFILE.texe ]]; then
         rm $TEXFILE.texe
@@ -88,19 +105,26 @@ if [[ -f $PDFFILE.pdf ]]; then
         if convert -density 800 $PDFFILE.pdf -quality 800 $PNGFILE.png; then
             echo "[INFO]PNG image without background successfully generated!"
         else
+            EXITCODE=$?
             echo "[WARNING]Failed to generate PNG image without background."
+            exit $EXITCODE
         fi
     elif convert -density 800 $PDFFILE.pdf -quality 800 -background white -alpha remove $PNGFILE.png; then
         echo "[INFO]PNG image successfully generated!"
     else
+        EXITCODE=$?
         echo "[WARNING]Failed to generate PNG image."
+        exit $EXITCODE
     fi
 else
+    EXITCODE=$?
     echo "[WARNING]The PDF file $PDFFILE.pdf does not exist."
+    exit $EXITCODE
 fi
 if [[ -n $OUTPUTPATH ]]; then
     mv $PNGFILE.png $OUTPUTPATH
+    echo "[INFO]The image file has been produced in the directory $OUTPUTPATH"
 fi
-if [[ $CUSTOMIZE = "1" ]]; then
+if [[ $CUSTOMIZE = YES ]]; then
     rm $TEXFILE.tex
 fi
