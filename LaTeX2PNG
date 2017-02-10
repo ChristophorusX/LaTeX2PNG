@@ -60,11 +60,13 @@ if [[ -n $BORDER ]]; then
     echo "[INFO]Change border length to $BORDER."
 fi
 if [[ -n $INPUTPATH ]]; then
-    cat $INPUTPATH > $TEXFILE.tex
-else
-    EXITCODE=$?
-    echo "[WARNING]The input file does not exist."
-    exit $EXITCODE
+    if cat $INPUTPATH > $TEXFILE.tex; then
+        echo "[INFO]successfully imported from input path."
+    else
+        EXITCODE=$?
+        echo "[WARNING]The input file does not exist."
+        exit $EXITCODE
+    fi
 fi
 if [[ -f $TEXFILE.tex ]]; then
     if pdflatex $TEXFILE.tex && mv $TEXFILE.pdf $PDFFILE.pdf; then
