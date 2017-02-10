@@ -104,7 +104,7 @@ fi
 if [[ -f $PDFFILE.pdf ]]; then
     echo "[INFO]Generating PNG image from PDF file."
     if [[ ( -n $BACKGROUND ) && ( $BACKGROUND = "none" ) ]]; then
-        if convert -density 800 $PDFFILE.pdf -quality 800 $PNGFILE.png; then
+        if convert -density 800 $PDFFILE.pdf -quality 800 $PNGFILE.png &> /dev/null; then
             echo "[INFO]PNG image without background successfully generated!"
         else
             EXITCODE=$?
