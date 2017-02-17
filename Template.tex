@@ -2,14 +2,26 @@
 \usepackage{varwidth}
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 
-\newcommand{\E}{\mathbb{E}}
-\renewcommand{\P}{\mathbb{P}}
-\newcommand{\R}{\mathbb{R}}
+\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbI}{\mathbb{I}}
+\newcommand{\comp}{\mathsf{c}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calG}{\mathcal{G}}
 \newcommand{\Var}{\mathrm{Var}}
+\newcommand{\leftbrace}{\{}
+\newcommand{\rightbrace}{\}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{subproof}[1]{\begin{trivlist}
+\item[\hskip \labelsep #1 {\em Proof.}]}{\hfill$\Box$\end{trivlist}}
 
 \begin{document}
-    Given two random variables being independent or not, we have the following equation $\E(X+Y)=\E(X)+\E(Y)=\int_0^\infty f(x)dx+\int_0^\infty g(y)dy$. For variation, we need to know the independency to have
+    Given two random variables being independent or not, we have the following equation $\bbE(X+Y)=\bbE(X)+\bbE(Y)=\int_0^\infty f(x)dx+\int_0^\infty g(y)dy$. For variation, we need to know the independency to have
     \begin{displaymath}
-       \Var(X+Y)=\Var(X)+\Var(Y) 
+       \Var(X+Y)=\Var(X)+\Var(Y)
     \end{displaymath}
 \end{document}
