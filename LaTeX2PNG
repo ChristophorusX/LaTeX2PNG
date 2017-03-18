@@ -100,6 +100,10 @@ if [[ $REMOVE = YES ]]; then
         rm $TEXFILE.texe
         echo "[INFO].texe file removed."
     fi
+    if [[ ( -f tmp.aux ) && ( -f tmp.log ) ]]; then
+        rm tmp.aux tmp.log
+        echo "[INFO]tmp.aux and tmp.log have been removed."
+    fi
 fi
 if [[ -f $PDFFILE.pdf ]]; then
     echo "[INFO]Generating PNG image from PDF file."
