@@ -38,18 +38,19 @@ Any standalone formula can be produced by providing the flag `-l/--line`:
 e.g.: to produce formulae in form of inline math.
 
 ```bash
-$ ./LaTeX2PNG -l "$\E(X+Y)=\E(X)+\E(Y)$"
+$ ./LaTeX2PNG -l '$\E(X+Y)=\E(X)+\E(Y)$'
 ```
 
 
 or
 
 ```bash
-$ ./LaTeX2PNG -l "$$\E(X+Y)=\E(X)+\E(Y)$$"
+$ ./LaTeX2PNG -l '$$\E(X+Y)=\E(X)+\E(Y)$$'
 ```
 
 to produce formulae in form of display math.
 
+**Note:** *Please use single quote `'` instead of double quote `"` to surround the line.*
 ---
 
 Border length of the document can be set by `-b/--border` flag:
