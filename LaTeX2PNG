@@ -50,10 +50,12 @@ done
 if [[ $CUSTOMIZE = YES ]]; then
     cat $TEXFILE.tex > tmp.tex
     TEXFILE=tmp
+    REMOVE=YES
+    echo "[INFO]Template file has been altered to tmp.tex."
 fi
 if [[ -n $LINE ]]; then
     sed -ie '/[\\\]begin{document}/,/[\\\]end{document}/d' $TEXFILE.tex
-    echo $"\\begin{document}$LINE\\end{document}" >> tmp.tex
+    echo "\\begin{document}$LINE\\end{document}" >> "$TEXFILE.tex"
 fi
 if [[ -n $BORDER ]]; then
     sed -ie "s/border=10pt/border=$BORDER/g" $TEXFILE.tex
@@ -108,14 +110,14 @@ fi
 if [[ -f $PDFFILE.pdf ]]; then
     echo "[INFO]Generating PNG image from PDF file."
     if [[ ( -n $BACKGROUND ) && ( $BACKGROUND = "none" ) ]]; then
-        if convert -density 800 $PDFFILE.pdf -quality 800 $PNGFILE.png &> /dev/null; then
+        if convert -density 2000 $PDFFILE.pdf -quality 2000 $PNGFILE.png &> /dev/null; then
             echo "[INFO]PNG image without background successfully generated!"
         else
             EXITCODE=$?
             echo "[WARNING]Failed to generate PNG image without background."
             exit $EXITCODE
         fi
-        elif convert -density 800 $PDFFILE.pdf -quality 800 -background white -alpha remove $PNGFILE.png; then
+    elif convert -density 2000 $PDFFILE.pdf -quality 2000 -background white -alpha remove $PNGFILE.png; then
         echo "[INFO]PNG image successfully generated!"
     else
         EXITCODE=$?
